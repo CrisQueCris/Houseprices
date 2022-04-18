@@ -13,13 +13,9 @@ The basis for this study is a dataset of 21597 houses in King County of Washingt
     Wikipedia: 
     
         - King county has a population of 2 269 675 (census 2020) (most populated in Washington)
-        
         - county seat is Seattle (pop: 737 015)
-        
         - 5980 sqaure kilometres
-        
         - 490 square km water bodies
-        
         - highest mountain: Mount Daniel 2 426 m
         
  
