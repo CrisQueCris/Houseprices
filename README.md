@@ -11,10 +11,15 @@ Participators:
 The aim of this project is to identify factors that influence house prices. 
 The basis for this study is a dataset of 21597 houses in King County of Washington state. 
     Wikipedia: 
+    
         - King county has a population of 2 269 675 (census 2020) (most populated in Washington)
+        
         - county seat is Seattle (pop: 737 015)
+        
         - 5980 sqaure kilometres
+        
         - 490 square km water bodies
+        
         - highest mountain: Mount Daniel 2 426 m
         
  
@@ -25,26 +30,48 @@ The basis for this study is a dataset of 21597 houses in King County of Washingt
 The dataframe contains the following columns:
 
 0   Unnamed: 0     21597 non-null  int64  
+
  1   id             21597 non-null  int64  
+ 
  2   date           21597 non-null  object 
+ 
  3   bedrooms       21597 non-null  int64  
+ 
  4   bathrooms      21597 non-null  float64
+ 
  5   sqft_living    21597 non-null  int64  
+ 
  6   sqft_lot       21597 non-null  int64  
+ 
  7   floors         21597 non-null  float64
- 8   waterfront     21597 non-null  int64  
- 9   view           21597 non-null  int64  
- 10  condition      21597 non-null  int64  
+ 
+ 8   waterfront     21597 non-null  int64 
+ 
+ 9   view           21597 non-null  int64
+ 
+ 10  condition      21597 non-null  int64
+ 
+
  11  grade          21597 non-null  int64  
- 12  sqft_above     21597 non-null  int64  
+ 
+ 12  sqft_above     21597 non-null  int64 
+ 
  13  sqft_basement  21597 non-null  int64  
- 14  yr_built       21597 non-null  int64  
- 15  yr_renovated   21597 non-null  int64  
+ 
+ 14  yr_built       21597 non-null  int64 
+ 
+ 15  yr_renovated   21597 non-null  int64 
+ 
  16  zipcode        21597 non-null  int64  
+ 
  17  lat            21597 non-null  float64
+ 
  18  long           21597 non-null  float64
+ 
  19  sqft_living15  21597 non-null  int64  
+ 
  20  sqft_lot15     21597 non-null  int64  
+ 
  21  price          21597 non-null  int64
 
 Descriptive Statistics of a few numerical variables:
