@@ -6,7 +6,7 @@ This is the midterm project.
 Participators:
 
     - Christoph Rendel (@CrisQueCris)
-    - Elizabeth
+    - Elizabeth Shogbanmu(Beth-sho)
 
 The aim of this project is to identify factors that influence house prices. 
 The basis for this study is a dataset of 21597 houses in King County of Washington state. 
