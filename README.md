@@ -29,15 +29,11 @@ The basis for this study is a dataset of 21597 houses in King County of Washingt
 
 The dataframe contains the following columns:
 
-0   Unnamed: 0     21597 non-null  int64  
-
- 1   id             21597 non-null  int64  
- 
- 2   date           21597 non-null  object 
- 
- 3   bedrooms       21597 non-null  int64  
- 
- 4   bathrooms      21597 non-null  float64
+    0.   Unnamed: 0     21597 non-null  int64  
+    1.   id             21597 non-null  int64  
+    2.   date           21597 non-null  object 
+    3.   bedrooms       21597 non-null  int64  
+    4.   bathrooms      21597 non-null  float64
  
  5   sqft_living    21597 non-null  int64  
  
