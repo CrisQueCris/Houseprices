@@ -6,7 +6,7 @@ This is the midterm project.
 Participators:
 
     - Christoph Rendel (@CrisQueCris)
-    - Elizabeth
+    - Elizabeth Shogbanmu(Beth-sho)
 
 The aim of this project is to identify factors that influence house prices. 
 The basis for this study is a dataset of 21597 houses in King County of Washington state. 
@@ -92,29 +92,27 @@ To Do:
 
 Suggested Timeline:
 
-Monday: EDA 
+Monday: 
+    - EDA 
 
-    Tasks: Summit Repo with project outline 
-
-    The readme file should contains:
-    Members of the group
-    Goal of the project, what you want to achieve. Please specify if it is a modelling or BI project
-    Brief description of the dataset (Source, Number of rows, number of features)
-
-
-Tuesday: Modell preparation
+    1st Modell preparation
     - Normalizing
     - Outlier Detection
     - Scaling
     - Modelling
     - Prediction
-    - Analyse Fit
 
+
+Tuesday: 
+    - Analyse Fit
+    - Feature Engineering: 
+        1. (use lat/long with knn to improve regression)
+        2. Include renovated, sqft_basement
+    
 
 Wednesday:
-    - Improve Model
-    - Visualize Findings
-    - Tableau?
+- Improve Model
+- Visualize Findings
 
 Thursday: 
     - Finish presentation
@@ -122,4 +120,4 @@ Thursday:
 
 Friday: 
     - Present:
-        12 minutes (7minutes presentation + 5 minutes Q&A)
+        12 minutes (7 minutes presentation + 5 minutes Q&A)
