@@ -377,7 +377,7 @@
       <column caption='1930-1960 = Category B' datatype='integer' name='[Calculation_221239356784230403]' role='measure' type='quantitative'>
         <calculation class='tableau' formula='[yr_built]' />
       </column>
-      <column caption='year_built_bins' datatype='integer' name='[Yr Built (bin)]' role='dimension' type='ordinal'>
+      <column aggregation='None' caption='year_built_bins' datatype='integer' name='[Yr Built (bin)]' role='dimension' type='ordinal'>
         <calculation class='bin' decimals='-1' formula='[yr_built]' peg='0' size='6.7' />
       </column>
       <_.fcp.ObjectModelTableType.true...column caption='house_price_df.csv' datatype='table' name='[__tableau_internal_object_id__].[house_price_df.csv_10835AA06C10425EBDCFBA1A908B34E3]' role='measure' type='quantitative' />
