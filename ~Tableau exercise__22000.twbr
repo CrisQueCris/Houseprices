@@ -3,12 +3,17 @@
 <!-- build 20221.22.0324.2209                               -->
 <workbook original-version='18.1' source-build='2022.1.0 (20221.22.0324.2209)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
   <document-format-change-manifest>
+    <_.fcp.AccessibleZoneTabOrder.true...AccessibleZoneTabOrder />
     <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <_.fcp.ExplainData_AuthorControls.true...ExplainData_AuthorControls />
+    <_.fcp.ExplainData_NullValueExplanation.true...ExplainData_NullValueExplanation />
     <MapboxVectorStylesAndLayers />
     <_.fcp.MarkAnimation.true...MarkAnimation />
     <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
     <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
     <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SetMembershipControl />
     <SheetIdentifierTracking />
     <WindowsPersistSimpleIdentifiers />
   </document-format-change-manifest>
@@ -368,17 +373,11 @@
       <column datatype='string' name='[Bedrooms (group)]' role='dimension' type='nominal'>
         <calculation class='categorical-bin' column='[bedrooms]' new-bin='true' />
       </column>
-      <column caption='Category A' datatype='real' name='[Calculation_1548112397356580871]' role='measure' type='quantitative'>
-        <calculation class='tableau' formula='IIF ([yr_built]&lt;= 1930)' />
+      <column caption='bins' datatype='string' name='[Calculation_1548112397634805775]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [yr_built]&lt;= 1930 &#13;&#10;THEN &apos;Category A&apos;&#13;&#10;ELSEIF[yr_built]&lt;= 1960 &#13;&#10;THEN  &apos;Category B&apos;&#13;&#10;ELSEIF [yr_built]&lt;= 1990 &#13;&#10;THEN &quot;Category C&quot;&#13;&#10;ELSEIF [yr_built]&lt;= 2015 &#13;&#10;THEN &apos;Category D&apos;&#13;&#10;END' />
       </column>
-      <column caption='1900-1930=Category A' datatype='integer' name='[Calculation_221239356783751170]' role='measure' type='quantitative'>
-        <calculation class='tableau' formula='[yr_built]' />
-      </column>
-      <column caption='1930-1960 = Category B' datatype='integer' name='[Calculation_221239356784230403]' role='measure' type='quantitative'>
-        <calculation class='tableau' formula='[yr_built]' />
-      </column>
-      <column aggregation='None' caption='year_built_bins' datatype='integer' name='[Yr Built (bin)]' role='dimension' type='ordinal'>
-        <calculation class='bin' decimals='-1' formula='[yr_built]' peg='0' size='6.7' />
+      <column caption='year_built_bins' datatype='string' name='[Calculation_1548112397636870161]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [yr_built]&lt;= 1930 &#13;&#10;THEN &apos;Category A&apos;&#13;&#10;ELSEIF[yr_built]&lt;= 1960 &#13;&#10;THEN  &apos;Category B&apos;&#13;&#10;ELSEIF [yr_built]&lt;= 1990 &#13;&#10;THEN &quot;Category C&quot;&#13;&#10;ELSEIF [yr_built]&lt;= 2015 &#13;&#10;THEN &apos;Category D&apos;&#13;&#10;END' />
       </column>
       <_.fcp.ObjectModelTableType.true...column caption='house_price_df.csv' datatype='table' name='[__tableau_internal_object_id__].[house_price_df.csv_10835AA06C10425EBDCFBA1A908B34E3]' role='measure' type='quantitative' />
       <column aggregation='Sum' caption='Bathrooms' datatype='real' name='[bathrooms]' role='dimension' type='ordinal' />
@@ -404,11 +403,6 @@
       <column aggregation='Sum' caption='Zipcode' datatype='integer' default-format='*00000' name='[zipcode]' role='dimension' semantic-role='[State].[Name]' type='ordinal' />
       <column-instance column='[bedrooms]' derivation='None' name='[none:bedrooms:ok]' pivot='key' type='ordinal' />
       <column-instance column='[zipcode]' derivation='None' name='[none:zipcode:ok]' pivot='key' type='ordinal' />
-      <drill-paths>
-        <drill-path name='Zipcode'>
-          <field>[zipcode]</field>
-        </drill-path>
-      </drill-paths>
       <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='false' />
       <style>
         <style-rule element='mark'>
@@ -683,6 +677,7 @@
         <field-sort-custom-order field='sqft_above' />
         <field-sort-custom-order field='sqft_basement' />
         <field-sort-custom-order field='yr_built' />
+        <field-sort-custom-order field='Calculation_1548112397636870161' />
         <field-sort-custom-order field='Calculation_221239356784230403' />
         <field-sort-custom-order field='Calculation_221239356783751170' />
         <field-sort-custom-order field='yr_renovated' />
@@ -811,6 +806,61 @@
         <cols />
       </table>
       <simple-id uuid='{AD2D7F20-06E7-47F8-924E-E539845FEA9C}' />
+    </worksheet>
+    <worksheet name='Price of bedroom type vs year built'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>6. Comparing trends in Prices of 3 and 4 bedrooms based on Year built</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='house_price_df' name='federated.0d2f6xn079fnuz14xbf4b17dokwg' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column aggregation='Sum' caption='Bedrooms' datatype='integer' name='[bedrooms]' role='dimension' type='ordinal' />
+            <column-instance column='[bedrooms]' derivation='None' name='[none:bedrooms:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[yr_built]' derivation='None' name='[none:yr_built:qk]' pivot='key' type='quantitative' />
+            <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column caption='Yr Built' datatype='integer' name='[yr_built]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:bedrooms:ok]' member='3' />
+              <groupfilter function='member' level='[none:bedrooms:ok]' member='4' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</rows>
+        <cols>([federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok] * [federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:yr_built:qk])</cols>
+      </table>
+      <simple-id uuid='{5BFA3479-678E-4A52-B6BD-546496F7C729}' />
     </worksheet>
     <worksheet name='Price vs Bathrooms'>
       <layout-options>
@@ -1058,11 +1108,11 @@
       </table>
       <simple-id uuid='{263E6395-367C-48CE-8842-E7DEA7BFCBE2}' />
     </worksheet>
-    <worksheet name='Price vs Year built'>
+    <worksheet name='Price vs Year Built'>
       <layout-options>
         <title>
           <formatted-text>
-            <run>6. Comparing trends in Prices of 3 and 4 bedrooms based on Year built</run>
+            <run>Comparing prices based on year built-A(1900-1930), B(1930-1960), C(1960-1990) and D(1990-2015)</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -1072,46 +1122,49 @@
             <datasource caption='house_price_df' name='federated.0d2f6xn079fnuz14xbf4b17dokwg' />
           </datasources>
           <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
+            <column caption='year_built_bins' datatype='string' name='[Calculation_1548112397636870161]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [yr_built]&lt;= 1930 &#13;&#10;THEN &apos;Category A&apos;&#13;&#10;ELSEIF[yr_built]&lt;= 1960 &#13;&#10;THEN  &apos;Category B&apos;&#13;&#10;ELSEIF [yr_built]&lt;= 1990 &#13;&#10;THEN &quot;Category C&quot;&#13;&#10;ELSEIF [yr_built]&lt;= 2015 &#13;&#10;THEN &apos;Category D&apos;&#13;&#10;END' />
+            </column>
             <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
-            <column aggregation='Sum' caption='Bedrooms' datatype='integer' name='[bedrooms]' role='dimension' type='ordinal' />
-            <column-instance column='[bedrooms]' derivation='None' name='[none:bedrooms:ok]' pivot='key' type='ordinal' />
-            <column-instance column='[yr_built]' derivation='None' name='[none:yr_built:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[id]' derivation='Count' name='[cnt:id:qk]' pivot='key' type='quantitative' />
+            <column caption='Id' datatype='integer' name='[id]' role='dimension' type='ordinal' />
+            <column-instance column='[Calculation_1548112397636870161]' derivation='None' name='[none:Calculation_1548112397636870161:nk]' pivot='key' type='nominal' />
             <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
             <column caption='Yr Built' datatype='integer' name='[yr_built]' role='dimension' type='quantitative' />
           </datasource-dependencies>
-          <filter class='categorical' column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok]'>
-            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
-              <groupfilter function='member' level='[none:bedrooms:ok]' member='3' />
-              <groupfilter function='member' level='[none:bedrooms:ok]' member='4' />
-            </groupfilter>
-          </filter>
-          <slices>
-            <column>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok]</column>
-          </slices>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:Calculation_1548112397636870161:nk]' value='97' />
+          </style-rule>
+        </style>
         <panes>
-          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
               <breakdown value='auto' />
             </view>
             <mark class='Automatic' />
             <encodings>
-              <color column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok]' />
+              <color column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:Calculation_1548112397636870161:nk]' />
+              <text column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[cnt:id:qk]' />
             </encodings>
             <style>
               <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
                 <format attr='mark-labels-cull' value='true' />
-                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
               </style-rule>
             </style>
           </pane>
         </panes>
         <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</rows>
-        <cols>([federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok] * [federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:yr_built:qk])</cols>
+        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:Calculation_1548112397636870161:nk]</cols>
       </table>
-      <simple-id uuid='{5BFA3479-678E-4A52-B6BD-546496F7C729}' />
+      <simple-id uuid='{00EC02E6-443A-4323-A7BA-91977D1D924A}' />
     </worksheet>
     <worksheet name='Sheet 10'>
       <layout-options>
@@ -1196,28 +1249,11 @@
             <view>
               <breakdown value='auto' />
             </view>
-            <mark class='Circle' />
-            <encodings>
-              <size column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' />
-              <text column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:sqft_living15:ok]' />
-            </encodings>
-            <style>
-              <style-rule element='mark'>
-                <format attr='mark-labels-show' value='true' />
-                <format attr='mark-labels-cull' value='true' />
-                <format attr='mark-labels-line-first' value='true' />
-                <format attr='mark-labels-line-last' value='true' />
-                <format attr='mark-labels-range-min' value='true' />
-                <format attr='mark-labels-range-max' value='true' />
-                <format attr='mark-labels-mode' value='all' />
-                <format attr='mark-labels-range-scope' value='pane' />
-                <format attr='mark-labels-range-field' value='' />
-              </style-rule>
-            </style>
+            <mark class='Automatic' />
           </pane>
         </panes>
-        <rows />
-        <cols />
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:sqft_living15:ok]</rows>
+        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</cols>
       </table>
       <simple-id uuid='{05D613C4-EBDF-4932-8E27-F41DDB87D057}' />
     </worksheet>
@@ -1285,11 +1321,13 @@
             <mapsource name='Tableau' />
           </mapsources>
           <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
             <column aggregation='Avg' caption='Lat' datatype='real' name='[lat]' role='dimension' semantic-role='[Geographical].[Latitude]' type='quantitative' />
             <column aggregation='Avg' caption='Long' datatype='real' name='[long]' role='dimension' semantic-role='[Geographical].[Longitude]' type='quantitative' />
             <column-instance column='[lat]' derivation='None' name='[none:lat:qk]' pivot='key' type='quantitative' />
             <column-instance column='[long]' derivation='None' name='[none:long:qk]' pivot='key' type='quantitative' />
             <column-instance column='[zipcode]' derivation='None' name='[none:zipcode:ok]' pivot='key' type='ordinal' />
+            <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
             <column aggregation='Sum' caption='Zipcode' datatype='integer' default-format='*00000' name='[zipcode]' role='dimension' semantic-role='[State].[Name]' type='ordinal' />
           </datasource-dependencies>
           <aggregation value='true' />
@@ -1300,18 +1338,20 @@
           </style-rule>
         </style>
         <panes>
-          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow'>
             <view>
               <breakdown value='auto' />
             </view>
-            <mark class='Automatic' />
+            <mark class='Multipolygon' />
             <encodings>
-              <color column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:zipcode:ok]' />
+              <color column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' />
+              <lod column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:zipcode:ok]' />
+              <geometry column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[Geometry (generated)]' />
             </encodings>
           </pane>
         </panes>
-        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:long:qk]</rows>
-        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:lat:qk]</cols>
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:lat:qk]</rows>
+        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:long:qk]</cols>
       </table>
       <simple-id uuid='{FCC0E722-F895-40BC-9EC1-2D8AECBA7AE6}' />
     </worksheet>
@@ -1365,36 +1405,55 @@
       </table>
       <simple-id uuid='{9813183B-A01F-4DFB-9B16-C6746AC091EA}' />
     </worksheet>
-    <worksheet name='Sheet 18'>
+    <worksheet name='Sheet 19'>
       <table>
         <view>
           <datasources>
             <datasource caption='house_price_df' name='federated.0d2f6xn079fnuz14xbf4b17dokwg' />
           </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
           <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
             <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column aggregation='Avg' caption='Lat' datatype='real' name='[lat]' role='dimension' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' caption='Long' datatype='real' name='[long]' role='dimension' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[lat]' derivation='None' name='[none:lat:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[long]' derivation='None' name='[none:long:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[zipcode]' derivation='None' name='[none:zipcode:ok]' pivot='key' type='ordinal' />
             <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column aggregation='Sum' caption='Zipcode' datatype='integer' default-format='*00000' name='[zipcode]' role='dimension' semantic-role='[State].[Name]' type='ordinal' />
           </datasource-dependencies>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:long:qk]' field-type='quantitative' max='-13562878.743844727' min='-13783229.670859506' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:lat:qk]' field-type='quantitative' max='6076478.0086792884' min='5946049.6964347083' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
               <breakdown value='auto' />
             </view>
-            <mark class='Automatic' />
+            <mark class='Multipolygon' />
+            <encodings>
+              <lod column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:zipcode:ok]' />
+              <color column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' />
+              <geometry column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[Geometry (generated)]' />
+            </encodings>
           </pane>
         </panes>
-        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</rows>
-        <cols />
-        <show-full-range>
-          <column>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[Yr Built (bin)]</column>
-        </show-full-range>
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:lat:qk]</rows>
+        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:long:qk]</cols>
       </table>
-      <simple-id uuid='{00EC02E6-443A-4323-A7BA-91977D1D924A}' />
+      <simple-id uuid='{68C1D7D2-3BF8-4F02-83B0-79CE602078F3}' />
     </worksheet>
-    <worksheet name='Sheet 19'>
+    <worksheet name='Sheet 20'>
       <table>
         <view>
           <datasources />
@@ -1412,7 +1471,55 @@
         <rows />
         <cols />
       </table>
-      <simple-id uuid='{68C1D7D2-3BF8-4F02-83B0-79CE602078F3}' />
+      <simple-id uuid='{E5845EA6-6346-4BE3-A68B-57F14DDC20CE}' />
+    </worksheet>
+    <worksheet name='Sheet 21'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='house_price_df' name='federated.0d2f6xn079fnuz14xbf4b17dokwg' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column aggregation='Avg' caption='Lat' datatype='real' name='[lat]' role='dimension' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' caption='Long' datatype='real' name='[long]' role='dimension' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[lat]' derivation='None' name='[none:lat:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[long]' derivation='None' name='[none:long:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[zipcode]' derivation='None' name='[none:zipcode:ok]' pivot='key' type='ordinal' />
+            <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column aggregation='Sum' caption='Zipcode' datatype='integer' default-format='*00000' name='[zipcode]' role='dimension' semantic-role='[State].[Name]' type='ordinal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:long:qk]' field-type='quantitative' max='-13500449.964176437' min='-13644835.436534798' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:lat:qk]' field-type='quantitative' max='6060404.3217938021' min='5974940.8580023674' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Multipolygon' />
+            <encodings>
+              <color column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' />
+              <lod column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:zipcode:ok]' />
+              <geometry column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[Geometry (generated)]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:lat:qk]</rows>
+        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:long:qk]</cols>
+      </table>
+      <simple-id uuid='{19F12F6F-796C-433D-9729-B2DC810880CE}' />
     </worksheet>
     <worksheet name='Sheet 9'>
       <layout-options>
@@ -1443,32 +1550,47 @@
             <view>
               <breakdown value='auto' />
             </view>
-            <mark class='Circle' />
+            <mark class='Shape' />
             <encodings>
-              <size column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' />
-              <text column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:sqft_above:ok]' />
+              <lod column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:sqft_above:ok]' />
             </encodings>
             <style>
               <style-rule element='mark'>
-                <format attr='mark-labels-show' value='true' />
-                <format attr='mark-labels-cull' value='true' />
-                <format attr='mark-labels-line-first' value='true' />
-                <format attr='mark-labels-line-last' value='true' />
-                <format attr='mark-labels-range-min' value='true' />
-                <format attr='mark-labels-range-max' value='true' />
-                <format attr='mark-labels-mode' value='all' />
-                <format attr='mark-labels-range-scope' value='pane' />
-                <format attr='mark-labels-range-field' value='' />
+                <format attr='size' value='0.60000002384185791' />
               </style-rule>
             </style>
           </pane>
         </panes>
-        <rows />
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</rows>
         <cols />
       </table>
       <simple-id uuid='{D2ABB190-C578-4133-8A99-FA4691D64C78}' />
     </worksheet>
   </worksheets>
+  <dashboards>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 1'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones />
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='2' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='1' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{A9FFE996-6C13-4984-9D0A-AB4F23CB17E0}' />
+    </dashboard>
+  </dashboards>
   <windows saved-dpi-scale-factor='1.5' source-height='44'>
     <window class='worksheet' name='List f columns that were changed'>
       <cards>
@@ -1756,7 +1878,7 @@
       </cards>
       <simple-id uuid='{BECB0D48-379A-441F-B715-42D7EC2F43AE}' />
     </window>
-    <window class='worksheet' name='Sheet 13'>
+    <window class='worksheet' maximized='true' name='Sheet 13'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1778,7 +1900,7 @@
         </edge>
         <edge name='right'>
           <strip size='160'>
-            <card pane-specification-id='1' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:zipcode:ok]' type='color' />
+            <card pane-specification-id='3' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' type='color' />
           </strip>
         </edge>
       </cards>
@@ -1812,7 +1934,7 @@
       </cards>
       <simple-id uuid='{61B34248-1D1D-4B7E-AE65-26678D5BB1E8}' />
     </window>
-    <window class='worksheet' name='Price vs Year built'>
+    <window class='worksheet' name='Price of bedroom type vs year built'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1868,7 +1990,7 @@
       </cards>
       <simple-id uuid='{F624319B-97F6-43A1-9BA4-F93B6F1EE13F}' />
     </window>
-    <window class='worksheet' maximized='true' name='Sheet 18'>
+    <window class='worksheet' name='Price vs Year Built'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1886,6 +2008,11 @@
           </strip>
           <strip size='30'>
             <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:Calculation_1548112397636870161:nk]' type='color' />
           </strip>
         </edge>
       </cards>
@@ -1911,8 +2038,82 @@
             <card type='title' />
           </strip>
         </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' type='color' />
+          </strip>
+        </edge>
       </cards>
       <simple-id uuid='{55F45A94-8BD2-4778-B4A2-88EFD4449C39}' />
     </window>
+    <window class='dashboard' name='Dashboard 1'>
+      <viewpoints />
+      <active id='-1' />
+      <simple-id uuid='{DE720F1A-D8B6-4529-9180-39B4480C6969}' />
+    </window>
+    <window class='worksheet' name='Sheet 20'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{E8A87B71-DD21-45F0-92B0-AA9BA8561CD0}' />
+    </window>
+    <window class='worksheet' name='Sheet 21'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{09800623-47F6-47D1-81BE-27B1F360D9F3}' />
+    </window>
   </windows>
+  <_.fcp.ExplainData_AuthorControls.true...explain-data enabled-for-viewer='true' extreme-values-enabled-for-all='false'>
+    <explanation-types>
+      <explanation-type enabled='true' type='number-of-records' />
+      <explanation-type enabled='true' type='average-of-records' />
+      <explanation-type enabled='true' type='aggregated-dimensions' />
+      <explanation-type enabled='true' type='distribution-of-records' />
+      <explanation-type enabled='true' type='unvisualized-measures' />
+      <explanation-type enabled='true' type='extreme-values' />
+      <_.fcp.ExplainData_NullValueExplanation.true...explanation-type enabled='true' type='null-value' />
+      <explanation-type enabled='true' type='tvd-single-value' />
+      <explanation-type enabled='true' type='ad-single-value' />
+    </explanation-types>
+  </_.fcp.ExplainData_AuthorControls.true...explain-data>
 </workbook>
