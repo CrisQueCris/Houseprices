@@ -379,6 +379,15 @@
       <column caption='year_built_bins' datatype='string' name='[Calculation_1548112397636870161]' role='dimension' type='nominal'>
         <calculation class='tableau' formula='IF [yr_built]&lt;= 1930 &#13;&#10;THEN &apos;Category A&apos;&#13;&#10;ELSEIF[yr_built]&lt;= 1960 &#13;&#10;THEN  &apos;Category B&apos;&#13;&#10;ELSEIF [yr_built]&lt;= 1990 &#13;&#10;THEN &quot;Category C&quot;&#13;&#10;ELSEIF [yr_built]&lt;= 2015 &#13;&#10;THEN &apos;Category D&apos;&#13;&#10;END' />
       </column>
+      <column aggregation='None' caption='Sqft Above (bin)' datatype='integer' name='[Sqft Above (bin)]' role='dimension' type='quantitative'>
+        <calculation class='bin' decimals='1' formula='[sqft_above]' peg='0' size='70' />
+      </column>
+      <column aggregation='None' caption='Sqft Basement (bin)' datatype='integer' name='[Sqft Basement (bin)]' role='dimension' type='quantitative'>
+        <calculation class='bin' decimals='1' formula='[sqft_basement]' peg='0' size='70' />
+      </column>
+      <column caption='Sqft Living (bin)' datatype='integer' name='[Sqft Living (bin)]' role='dimension' type='ordinal'>
+        <calculation class='bin' decimals='1' formula='[sqft_living]' peg='0' size='70' />
+      </column>
       <_.fcp.ObjectModelTableType.true...column caption='house_price_df.csv' datatype='table' name='[__tableau_internal_object_id__].[house_price_df.csv_10835AA06C10425EBDCFBA1A908B34E3]' role='measure' type='quantitative' />
       <column aggregation='Sum' caption='Bathrooms' datatype='real' name='[bathrooms]' role='dimension' type='ordinal' />
       <column aggregation='Sum' caption='Bedrooms' datatype='integer' name='[bedrooms]' role='dimension' type='ordinal' />
@@ -390,7 +399,7 @@
       <column aggregation='Avg' caption='Lat' datatype='real' name='[lat]' role='dimension' semantic-role='[Geographical].[Latitude]' type='quantitative' />
       <column aggregation='Avg' caption='Long' datatype='real' name='[long]' role='dimension' semantic-role='[Geographical].[Longitude]' type='quantitative' />
       <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
-      <column aggregation='Sum' caption='Sqft Above' datatype='integer' name='[sqft_above]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Sqft Above' datatype='integer' name='[sqft_above]' role='dimension' type='quantitative' />
       <column aggregation='Sum' caption='Sqft Basement' datatype='integer' name='[sqft_basement]' role='dimension' type='ordinal' />
       <column aggregation='Sum' caption='Sqft Living15' datatype='integer' name='[sqft_living15]' role='dimension' type='ordinal' />
       <column caption='Sqft Living' datatype='integer' name='[sqft_living]' role='measure' type='quantitative' />
@@ -1032,6 +1041,48 @@
       </table>
       <simple-id uuid='{7C66C2E3-9756-4678-BDE1-DEE5D007501D}' />
     </worksheet>
+    <worksheet name='Price vs Sqft Living'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace' fontsize='18'>Comparing price with Living room sqft</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='house_price_df' name='federated.0d2f6xn079fnuz14xbf4b17dokwg' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
+            <column caption='Sqft Living (bin)' datatype='integer' name='[Sqft Living (bin)]' role='dimension' type='ordinal'>
+              <calculation class='bin' decimals='1' formula='[sqft_living]' peg='0' size='70' />
+            </column>
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Sqft Living (bin)]' derivation='None' name='[none:Sqft Living (bin):qk]' pivot='key' type='quantitative' />
+            <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column caption='Sqft Living' datatype='integer' name='[sqft_living]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <mark-sizing custom-mark-size-in-axis-units='1.0' mark-alignment='mark-alignment-left' mark-sizing-setting='marks-scaling-on' use-custom-mark-size='false' />
+          </pane>
+        </panes>
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</rows>
+        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:Sqft Living (bin):qk]</cols>
+        <show-full-range>
+          <column>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[Sqft Living (bin)]</column>
+        </show-full-range>
+      </table>
+      <simple-id uuid='{05D613C4-EBDF-4932-8E27-F41DDB87D057}' />
+    </worksheet>
     <worksheet name='Price vs View'>
       <layout-options>
         <title>
@@ -1166,13 +1217,13 @@
       </table>
       <simple-id uuid='{00EC02E6-443A-4323-A7BA-91977D1D924A}' />
     </worksheet>
-    <worksheet name='Sheet 10'>
+    <worksheet name='Price vs. sqft_above'>
       <layout-options>
         <title>
           <formatted-text>
-            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace'>Price</run>
-            <run fontcolor='#24292f' fontname='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji' fontsize='18'> vs. </run>
-            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace' fontsize='18'>sqft_basement</run>
+            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace'>Comparing Price</run>
+            <run fontcolor='#24292f' fontname='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji' fontsize='18'> with </run>
+            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace' fontsize='18'>sqft_above</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -1182,10 +1233,13 @@
             <datasource caption='house_price_df' name='federated.0d2f6xn079fnuz14xbf4b17dokwg' />
           </datasources>
           <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
+            <column aggregation='None' caption='Sqft Above (bin)' datatype='integer' name='[Sqft Above (bin)]' role='dimension' type='quantitative'>
+              <calculation class='bin' decimals='1' formula='[sqft_above]' peg='0' size='70' />
+            </column>
             <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[sqft_basement]' derivation='None' name='[none:sqft_basement:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Sqft Above (bin)]' derivation='None' name='[none:Sqft Above (bin):qk]' pivot='key' type='quantitative' />
             <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
-            <column aggregation='Sum' caption='Sqft Basement' datatype='integer' name='[sqft_basement]' role='dimension' type='ordinal' />
+            <column aggregation='Sum' caption='Sqft Above' datatype='integer' name='[sqft_above]' role='dimension' type='quantitative' />
           </datasource-dependencies>
           <aggregation value='true' />
         </view>
@@ -1195,14 +1249,57 @@
             <view>
               <breakdown value='auto' />
             </view>
-            <mark class='Circle' />
-            <encodings>
-              <size column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' />
-              <text column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:sqft_basement:ok]' />
-            </encodings>
+            <mark class='Shape' />
             <style>
               <style-rule element='mark'>
-                <format attr='mark-labels-show' value='true' />
+                <format attr='size' value='0.60000002384185791' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</rows>
+        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:Sqft Above (bin):qk]</cols>
+        <show-full-range>
+          <column>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[Sqft Above (bin)]</column>
+        </show-full-range>
+      </table>
+      <simple-id uuid='{D2ABB190-C578-4133-8A99-FA4691D64C78}' />
+    </worksheet>
+    <worksheet name='Price vs. sqft_basement'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace'>Comparing Price</run>
+            <run fontcolor='#24292f' fontname='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji' fontsize='18'> with B</run>
+            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace' fontsize='18'>asement sqft</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='house_price_df' name='federated.0d2f6xn079fnuz14xbf4b17dokwg' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
+            <column aggregation='None' caption='Sqft Basement (bin)' datatype='integer' name='[Sqft Basement (bin)]' role='dimension' type='quantitative'>
+              <calculation class='bin' decimals='1' formula='[sqft_basement]' peg='0' size='70' />
+            </column>
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Sqft Basement (bin)]' derivation='None' name='[none:Sqft Basement (bin):qk]' pivot='key' type='quantitative' />
+            <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column aggregation='Sum' caption='Sqft Basement' datatype='integer' name='[sqft_basement]' role='dimension' type='ordinal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <style>
+              <style-rule element='mark'>
                 <format attr='mark-labels-cull' value='true' />
                 <format attr='mark-labels-line-first' value='true' />
                 <format attr='mark-labels-line-last' value='true' />
@@ -1211,22 +1308,24 @@
                 <format attr='mark-labels-mode' value='all' />
                 <format attr='mark-labels-range-scope' value='pane' />
                 <format attr='mark-labels-range-field' value='' />
+                <format attr='mark-labels-show' value='false' />
               </style-rule>
             </style>
           </pane>
         </panes>
-        <rows />
-        <cols />
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</rows>
+        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:Sqft Basement (bin):qk]</cols>
+        <show-full-range>
+          <column>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[Sqft Basement (bin)]</column>
+        </show-full-range>
       </table>
       <simple-id uuid='{12FC675A-E1BE-433B-97D8-B91FB06D2E9A}' />
     </worksheet>
-    <worksheet name='Sheet 11'>
+    <worksheet name='Price vs. sqft_lot15'>
       <layout-options>
         <title>
           <formatted-text>
-            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace'>Price</run>
-            <run fontcolor='#24292f' fontname='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji' fontsize='18'> vs. </run>
-            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace' fontsize='18'>living15</run>
+            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace' fontsize='18'>Comparing Price with Lot sqft(2015)</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -1237,44 +1336,7 @@
           </datasources>
           <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
             <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[sqft_living15]' derivation='None' name='[none:sqft_living15:ok]' pivot='key' type='ordinal' />
-            <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
-            <column aggregation='Sum' caption='Sqft Living15' datatype='integer' name='[sqft_living15]' role='dimension' type='ordinal' />
-          </datasource-dependencies>
-          <aggregation value='true' />
-        </view>
-        <style />
-        <panes>
-          <pane selection-relaxation-option='selection-relaxation-allow'>
-            <view>
-              <breakdown value='auto' />
-            </view>
-            <mark class='Automatic' />
-          </pane>
-        </panes>
-        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:sqft_living15:ok]</rows>
-        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</cols>
-      </table>
-      <simple-id uuid='{05D613C4-EBDF-4932-8E27-F41DDB87D057}' />
-    </worksheet>
-    <worksheet name='Sheet 12'>
-      <layout-options>
-        <title>
-          <formatted-text>
-            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace'>Price</run>
-            <run fontcolor='#24292f' fontname='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji' fontsize='18'> vs. </run>
-            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace' fontsize='18'>sqft_lot15</run>
-          </formatted-text>
-        </title>
-      </layout-options>
-      <table>
-        <view>
-          <datasources>
-            <datasource caption='house_price_df' name='federated.0d2f6xn079fnuz14xbf4b17dokwg' />
-          </datasources>
-          <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
-            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[sqft_lot15]' derivation='None' name='[none:sqft_lot15:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[sqft_lot15]' derivation='None' name='[none:sqft_lot15:qk]' pivot='key' type='quantitative' />
             <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
             <column aggregation='Sum' caption='Sqft Lot15' datatype='integer' name='[sqft_lot15]' role='dimension' type='ordinal' />
           </datasource-dependencies>
@@ -1287,13 +1349,8 @@
               <breakdown value='auto' />
             </view>
             <mark class='Circle' />
-            <encodings>
-              <size column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' />
-              <text column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:sqft_lot15:ok]' />
-            </encodings>
             <style>
               <style-rule element='mark'>
-                <format attr='mark-labels-show' value='true' />
                 <format attr='mark-labels-cull' value='true' />
                 <format attr='mark-labels-line-first' value='true' />
                 <format attr='mark-labels-line-last' value='true' />
@@ -1302,12 +1359,13 @@
                 <format attr='mark-labels-mode' value='all' />
                 <format attr='mark-labels-range-scope' value='pane' />
                 <format attr='mark-labels-range-field' value='' />
+                <format attr='mark-labels-show' value='false' />
               </style-rule>
             </style>
           </pane>
         </panes>
-        <rows />
-        <cols />
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</rows>
+        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:sqft_lot15:qk]</cols>
       </table>
       <simple-id uuid='{79C86161-D3AC-42D1-A8EE-7A756B0EEB13}' />
     </worksheet>
@@ -1333,6 +1391,10 @@
           <aggregation value='true' />
         </view>
         <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:long:qk]' field-type='quantitative' max='-13520000.842503784' min='-13649947.760822251' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:lat:qk]' field-type='quantitative' max='6065266.354867138' min='5988349.2414822495' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
           <style-rule element='map'>
             <format attr='washout' value='0.0' />
           </style-rule>
@@ -1520,51 +1582,6 @@
         <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:long:qk]</cols>
       </table>
       <simple-id uuid='{19F12F6F-796C-433D-9729-B2DC810880CE}' />
-    </worksheet>
-    <worksheet name='Sheet 9'>
-      <layout-options>
-        <title>
-          <formatted-text>
-            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace'>Price</run>
-            <run fontcolor='#24292f' fontname='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji' fontsize='18'> vs. </run>
-            <run fontcolor='#24292f' fontname='ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace' fontsize='18'>sqft_above</run>
-          </formatted-text>
-        </title>
-      </layout-options>
-      <table>
-        <view>
-          <datasources>
-            <datasource caption='house_price_df' name='federated.0d2f6xn079fnuz14xbf4b17dokwg' />
-          </datasources>
-          <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
-            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[sqft_above]' derivation='None' name='[none:sqft_above:ok]' pivot='key' type='ordinal' />
-            <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
-            <column aggregation='Sum' caption='Sqft Above' datatype='integer' name='[sqft_above]' role='dimension' type='ordinal' />
-          </datasource-dependencies>
-          <aggregation value='true' />
-        </view>
-        <style />
-        <panes>
-          <pane selection-relaxation-option='selection-relaxation-allow'>
-            <view>
-              <breakdown value='auto' />
-            </view>
-            <mark class='Shape' />
-            <encodings>
-              <lod column='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:sqft_above:ok]' />
-            </encodings>
-            <style>
-              <style-rule element='mark'>
-                <format attr='size' value='0.60000002384185791' />
-              </style-rule>
-            </style>
-          </pane>
-        </panes>
-        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]</rows>
-        <cols />
-      </table>
-      <simple-id uuid='{D2ABB190-C578-4133-8A99-FA4691D64C78}' />
     </worksheet>
   </worksheets>
   <dashboards>
@@ -1786,7 +1803,7 @@
       </cards>
       <simple-id uuid='{E887189C-0E8C-4197-A401-AAED5F5B7B84}' />
     </window>
-    <window class='worksheet' name='Sheet 9'>
+    <window class='worksheet' maximized='true' name='Price vs. sqft_above'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1809,7 +1826,7 @@
       </cards>
       <simple-id uuid='{5FAE418A-394B-46FE-985D-71BE019B84D4}' />
     </window>
-    <window class='worksheet' name='Sheet 10'>
+    <window class='worksheet' name='Price vs. sqft_basement'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1832,7 +1849,7 @@
       </cards>
       <simple-id uuid='{8D1C0A00-4F15-418B-B722-FCB24E859D27}' />
     </window>
-    <window class='worksheet' name='Sheet 11'>
+    <window class='worksheet' name='Price vs Sqft Living'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1855,7 +1872,7 @@
       </cards>
       <simple-id uuid='{60FF0DFE-A2F8-4C47-AFBB-56BC960296C5}' />
     </window>
-    <window class='worksheet' name='Sheet 12'>
+    <window class='worksheet' name='Price vs. sqft_lot15'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1878,7 +1895,7 @@
       </cards>
       <simple-id uuid='{BECB0D48-379A-441F-B715-42D7EC2F43AE}' />
     </window>
-    <window class='worksheet' maximized='true' name='Sheet 13'>
+    <window class='worksheet' name='Sheet 13'>
       <cards>
         <edge name='left'>
           <strip size='160'>
