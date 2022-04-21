@@ -732,6 +732,107 @@
         </objects>
       </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
     </datasource>
+    <datasource caption='final_model_feature_importance' inline='true' name='federated.10l1rnf0g589jc1eslbh903hg91g' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='final_model_feature_importance' name='textscan.1802e0w1wjqc2s164435d0x6vo6l'>
+            <connection class='textscan' directory='C:/Users/User/OneDrive/Documents/GitHub/Houseprices/Data' filename='final_model_feature_importance.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.1802e0w1wjqc2s164435d0x6vo6l' name='final_model_feature_importance.csv' table='[final_model_feature_importance#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='F1' ordinal='0' />
+            <column datatype='string' name='Attribute' ordinal='1' />
+            <column datatype='real' name='Importance' ordinal='2' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='textscan.1802e0w1wjqc2s164435d0x6vo6l' name='final_model_feature_importance.csv' table='[final_model_feature_importance#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='F1' ordinal='0' />
+            <column datatype='string' name='Attribute' ordinal='1' />
+            <column datatype='real' name='Importance' ordinal='2' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[final_model_feature_importance.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F1</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[F1]</local-name>
+            <parent-name>[final_model_feature_importance.csv]</parent-name>
+            <remote-alias>F1</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[final_model_feature_importance.csv_E0782638BEE948A496E518506045F266]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Attribute</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Attribute]</local-name>
+            <parent-name>[final_model_feature_importance.csv]</parent-name>
+            <remote-alias>Attribute</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[final_model_feature_importance.csv_E0782638BEE948A496E518506045F266]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Importance</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Importance]</local-name>
+            <parent-name>[final_model_feature_importance.csv]</parent-name>
+            <remote-alias>Importance</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[final_model_feature_importance.csv_E0782638BEE948A496E518506045F266]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <_.fcp.ObjectModelTableType.true...column caption='final_model_feature_importance.csv' datatype='table' name='[__tableau_internal_object_id__].[final_model_feature_importance.csv_E0782638BEE948A496E518506045F266]' role='measure' type='quantitative' />
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='final_model_feature_importance.csv' id='final_model_feature_importance.csv_E0782638BEE948A496E518506045F266'>
+            <properties context=''>
+              <relation connection='textscan.1802e0w1wjqc2s164435d0x6vo6l' name='final_model_feature_importance.csv' table='[final_model_feature_importance#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='integer' name='F1' ordinal='0' />
+                  <column datatype='string' name='Attribute' ordinal='1' />
+                  <column datatype='real' name='Importance' ordinal='2' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
   </datasources>
   <mapsources>
     <mapsource name='Tableau' />
@@ -1621,6 +1722,26 @@
       </table>
       <simple-id uuid='{185EAC74-548E-48DB-B961-AF144E4668CC}' />
     </worksheet>
+    <worksheet name='Sheet 23'>
+      <table>
+        <view>
+          <datasources />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{FB4229D6-4545-4CB2-91B7-381514676082}' />
+    </worksheet>
   </worksheets>
   <dashboards>
     <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 1'>
@@ -1764,7 +1885,7 @@
       <simple-id uuid='{A9FFE996-6C13-4984-9D0A-AB4F23CB17E0}' />
     </dashboard>
   </dashboards>
-  <windows source-height='44'>
+  <windows source-height='75'>
     <window class='worksheet' name='List f columns that were changed'>
       <cards>
         <edge name='left'>
@@ -2239,7 +2360,7 @@
       <active id='-1' />
       <simple-id uuid='{DE720F1A-D8B6-4529-9180-39B4480C6969}' />
     </window>
-    <window class='worksheet' maximized='true' name='Sheet 21'>
+    <window class='worksheet' name='Sheet 21'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -2294,6 +2415,29 @@
         </edge>
       </cards>
       <simple-id uuid='{9A1000FA-50F8-43E2-8700-82104FFD9ECB}' />
+    </window>
+    <window class='worksheet' maximized='true' name='Sheet 23'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{5A96125E-2402-4A9D-8C53-8DB4C45FEC6E}' />
     </window>
   </windows>
   <_.fcp.ExplainData_AuthorControls.true...explain-data enabled-for-viewer='true' extreme-values-enabled-for-all='false'>
