@@ -5,7 +5,6 @@
   <document-format-change-manifest>
     <_.fcp.AccessibleZoneTabOrder.true...AccessibleZoneTabOrder />
     <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
-    <AutoCreateAndUpdateDSDPhoneLayouts />
     <_.fcp.ExplainData_AuthorControls.true...ExplainData_AuthorControls />
     <_.fcp.ExplainData_NullValueExplanation.true...ExplainData_NullValueExplanation />
     <MapboxVectorStylesAndLayers />
@@ -877,9 +876,6 @@
           <aggregation value='true' />
         </view>
         <style>
-          <style-rule element='axis'>
-            <format attr='display' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[cnt:id:qk]' scope='rows' value='false' />
-          </style-rule>
           <style-rule element='worksheet'>
             <format attr='font-size' value='8' />
           </style-rule>
@@ -1157,9 +1153,6 @@
           <aggregation value='true' />
         </view>
         <style>
-          <style-rule element='axis'>
-            <format attr='display' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' scope='rows' value='false' />
-          </style-rule>
           <style-rule element='worksheet'>
             <format attr='display-field-labels' scope='cols' value='false' />
           </style-rule>
@@ -1207,7 +1200,6 @@
         <style>
           <style-rule element='axis'>
             <format attr='title' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:Sqft Living (bin):qk]' scope='cols' value='Sqft Living' />
-            <format attr='display' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' scope='rows' value='false' />
           </style-rule>
         </style>
         <panes>
@@ -1249,9 +1241,6 @@
           <aggregation value='true' />
         </view>
         <style>
-          <style-rule element='axis'>
-            <format attr='display' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' scope='rows' value='false' />
-          </style-rule>
           <style-rule element='worksheet'>
             <format attr='display-field-labels' scope='cols' value='false' />
           </style-rule>
@@ -1294,9 +1283,6 @@
           <aggregation value='true' />
         </view>
         <style>
-          <style-rule element='axis'>
-            <format attr='display' class='0' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[avg:price:qk]' scope='rows' value='false' />
-          </style-rule>
           <style-rule element='cell'>
             <format attr='width' field='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:waterfront:ok]' value='118' />
           </style-rule>
@@ -1776,95 +1762,19 @@
         <zone h='35250' id='21' name='Sheet 17' show-title='false' w='44900' x='31900' y='33750' />
         <zone h='88500' id='22' name='Price vs Year Built' show-title='false' w='33300' x='300' y='10000' />
         <zone h='29250' id='23' name='Price vs View' show-title='false' w='34000' x='33600' y='68625' />
-        <zone h='26875' id='24' name='Price vs Floors' show-title='false' w='32900' x='32200' y='6500' />
-        <zone h='26875' id='25' name='Price vs Waterfront' show-title='false' w='31900' x='67800' y='6500' />
+        <zone h='26875' id='25' name='Price vs Waterfront' show-title='false' w='33300' x='66400' y='6500' />
         <zone h='29000' id='26' name='Price vs Sqft Living' show-title='false' w='31300' x='68100' y='68750' />
         <zone h='33250' id='27' name='Bedrooms vs. count of data points.' show-title='false' w='23100' x='76700' y='34500' />
+        <zone h='23000' id='28' name='Bedrooms vs. count of data points.' pane-specification-id='0' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok]' type-v2='color' w='14000' x='60700' y='34500' />
+        <zone h='23750' id='29' name='Price vs Floors' w='33200' x='34600' y='8625' />
       </zones>
       <devicelayouts>
-        <devicelayout auto-generated='true' name='Phone'>
-          <layout-options>
-            <title>
-              <formatted-text>
-                <run>King County-House Price Prediction</run>
-              </formatted-text>
-            </title>
-          </layout-options>
-          <size maxheight='1850' minheight='1850' sizing-mode='vscroll' />
+        <devicelayout name='Phone'>
+          <size maxheight='950' minheight='950' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='31' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='99136' id='30' param='vert' type-v2='layout-flow' w='95734' x='2133' y='432'>
-                <zone fixed-size='35' h='3030' id='11' type-v2='title' w='95734' x='2133' y='432'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone fixed-size='215' h='12054' id='24' is-fixed='true' name='Price vs Floors' show-title='false' w='95734' x='2133' y='3462'>
-                  <layout-cache minheight='120' type-h='scalable' type-w='fixed' />
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone fixed-size='215' h='12054' id='25' is-fixed='true' name='Price vs Waterfront' show-title='false' w='95734' x='2133' y='15516'>
-                  <layout-cache minheight='140' type-h='scalable' type-w='fixed' />
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone fixed-size='280' h='15567' id='22' is-fixed='true' name='Price vs Year Built' show-title='false' w='95734' x='2133' y='27570'>
-                  <layout-cache minheight='120' type-h='scalable' type-w='fixed' />
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone fixed-size='280' h='15567' id='21' is-fixed='true' name='Sheet 17' show-title='false' w='95734' x='2133' y='43137'>
-                  <layout-cache minheight='201' type-h='scalable' type-w='fixed' />
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone fixed-size='266' h='14810' id='27' is-fixed='true' name='Bedrooms vs. count of data points.' show-title='false' w='95734' x='2133' y='58704'>
-                  <layout-cache minheight='140' type-h='scalable' type-w='fixed' />
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone fixed-size='234' h='13081' id='23' is-fixed='true' name='Price vs View' show-title='false' w='95734' x='2133' y='73514'>
-                  <layout-cache minheight='120' type-h='scalable' type-w='fixed' />
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone fixed-size='232' h='12973' id='26' is-fixed='true' name='Price vs Sqft Living' show-title='false' w='95734' x='2133' y='86595'>
-                  <layout-cache minheight='153' type-h='scalable' type-w='fixed' />
+            <zone h='100000' id='20' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98316' id='19' param='vert' type-v2='layout-flow' w='95734' x='2133' y='842'>
+                <zone fixed-size='62' h='6105' id='11' type-v2='title' w='95734' x='2133' y='842'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2315,7 +2225,7 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='-1' />
+      <active id='23' />
       <simple-id uuid='{DE720F1A-D8B6-4529-9180-39B4480C6969}' />
     </window>
     <window class='worksheet' name='Sheet 17'>
