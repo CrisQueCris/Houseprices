@@ -1642,8 +1642,8 @@
               </zone-style>
             </zone>
             <zone h='90750' id='7' param='horz' type-v2='layout-flow' w='98400' x='800' y='8250'>
-              <zone h='90750' id='5' type-v2='layout-basic' w='33600' x='800' y='8250'>
-                <zone h='90750' id='3' name='Price vs Year Built' w='33600' x='800' y='8250'>
+              <zone h='90750' id='5' type-v2='layout-basic' w='32500' x='800' y='8250'>
+                <zone h='90750' id='3' name='Price vs Year Built' w='32500' x='800' y='8250'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1652,8 +1652,8 @@
                   </zone-style>
                 </zone>
               </zone>
-              <zone fixed-size='648' h='90750' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='64800' x='34400' y='8250'>
-                <zone fixed-size='278' h='35750' id='16' is-fixed='true' name='Price vs Sqft Living' w='64800' x='34400' y='8250'>
+              <zone fixed-size='659' h='90750' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='65900' x='33300' y='8250'>
+                <zone fixed-size='278' h='35750' id='16' is-fixed='true' name='Price vs Sqft Living' w='65900' x='33300' y='8250'>
                   <layout-cache minheight='272' minwidth='183' type-h='scalable' type-w='scalable' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -1662,7 +1662,7 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='125' h='16625' id='8' is-fixed='true' name='Price vs Year Built' pane-specification-id='0' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:Calculation_1548112397636870161:nk]' type-v2='color' w='64800' x='34400' y='44000'>
+                <zone fixed-size='151' h='19875' id='8' is-fixed='true' name='Price vs Year Built' pane-specification-id='0' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:Calculation_1548112397636870161:nk]' type-v2='color' w='65900' x='33300' y='44000'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1670,16 +1670,7 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='24' h='4000' id='17' is-fixed='true' name='Price vs Condition' w='64800' x='34400' y='60625'>
-                  <layout-cache cell-count-w='5' minheight='202' non-cell-size-w='89' type-h='scalable' type-w='cell' />
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                  </zone-style>
-                </zone>
-                <zone h='17500' id='12' name='Bedrooms vs. count of data points.' w='64800' x='34400' y='64625'>
+                <zone h='31125' id='12' name='Bedrooms vs. count of data points.' w='65900' x='33300' y='63875'>
                   <layout-cache cell-count-w='7' minheight='190' non-cell-size-w='71' type-h='scalable' type-w='cell' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -1688,15 +1679,7 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='24' h='4000' id='13' is-fixed='true' name='Bedrooms vs. count of data points.' pane-specification-id='0' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok]' type-v2='color' w='64800' x='34400' y='82125'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                  </zone-style>
-                </zone>
-                <zone fixed-size='95' h='12875' id='18' is-fixed='true' name='Price vs Condition' pane-specification-id='0' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:condition:ok]' type-v2='color' w='64800' x='34400' y='86125'>
+                <zone fixed-size='24' h='4000' id='13' is-fixed='true' name='Bedrooms vs. count of data points.' pane-specification-id='0' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok]' type-v2='color' w='65900' x='33300' y='95000'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2241,12 +2224,9 @@
       </cards>
       <simple-id uuid='{55F45A94-8BD2-4778-B4A2-88EFD4449C39}' />
     </window>
-    <window class='dashboard' maximized='true' name='Dashboard 1'>
+    <window class='dashboard' name='Dashboard 1'>
       <viewpoints>
         <viewpoint name='Bedrooms vs. count of data points.'>
-          <zoom type='entire-view' />
-        </viewpoint>
-        <viewpoint name='Price vs Condition'>
           <zoom type='entire-view' />
         </viewpoint>
         <viewpoint name='Price vs Sqft Living'>
@@ -2259,7 +2239,7 @@
       <active id='-1' />
       <simple-id uuid='{DE720F1A-D8B6-4529-9180-39B4480C6969}' />
     </window>
-    <window class='worksheet' name='Sheet 21'>
+    <window class='worksheet' maximized='true' name='Sheet 21'>
       <cards>
         <edge name='left'>
           <strip size='160'>
