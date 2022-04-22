@@ -1724,6 +1724,34 @@
       </table>
       <simple-id uuid='{185EAC74-548E-48DB-B961-AF144E4668CC}' />
     </worksheet>
+    <worksheet name='Sheet 23'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='house_price_df' name='federated.0d2f6xn079fnuz14xbf4b17dokwg' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0d2f6xn079fnuz14xbf4b17dokwg'>
+            <column-instance column='[price]' derivation='Median' name='[med:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[yr_renovated]' derivation='None' name='[none:yr_renovated:qk]' pivot='key' type='quantitative' />
+            <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column caption='Yr Renovated' datatype='integer' name='[yr_renovated]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[med:price:qk]</rows>
+        <cols>[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:yr_renovated:qk]</cols>
+      </table>
+      <simple-id uuid='{57069AEC-CC16-49F5-9BEE-DCD1C8A30F4E}' />
+    </worksheet>
   </worksheets>
   <dashboards>
     <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 1'>
@@ -1759,14 +1787,12 @@
             <format attr='margin' value='8' />
           </zone-style>
         </zone>
-        <zone h='35250' id='21' name='Sheet 17' show-title='false' w='44900' x='31900' y='33750' />
-        <zone h='88500' id='22' name='Price vs Year Built' show-title='false' w='33300' x='300' y='10000' />
-        <zone h='29250' id='23' name='Price vs View' show-title='false' w='34000' x='33600' y='68625' />
         <zone h='26875' id='25' name='Price vs Waterfront' show-title='false' w='33300' x='66400' y='6500' />
         <zone h='29000' id='26' name='Price vs Sqft Living' show-title='false' w='31300' x='68100' y='68750' />
         <zone h='33250' id='27' name='Bedrooms vs. count of data points.' show-title='false' w='23100' x='76700' y='34500' />
-        <zone h='23000' id='28' name='Bedrooms vs. count of data points.' pane-specification-id='0' param='[federated.0d2f6xn079fnuz14xbf4b17dokwg].[none:bedrooms:ok]' type-v2='color' w='14000' x='60700' y='34500' />
-        <zone h='23750' id='29' name='Price vs Floors' w='33200' x='34600' y='8625' />
+        <zone h='42875' id='29' name='Price vs Floors' w='33200' x='34600' y='8625' />
+        <zone h='45625' id='30' name='Price vs View' w='35200' x='33300' y='52375' />
+        <zone h='92250' id='31' name='Price vs Year Built' w='33300' x='600' y='7125' />
       </zones>
       <devicelayouts>
         <devicelayout name='Phone'>
@@ -2201,7 +2227,7 @@
       </cards>
       <simple-id uuid='{E8A87B71-DD21-45F0-92B0-AA9BA8561CD0}' />
     </window>
-    <window class='dashboard' maximized='true' name='Dashboard 1'>
+    <window class='dashboard' name='Dashboard 1'>
       <viewpoints>
         <viewpoint name='Bedrooms vs. count of data points.'>
           <zoom type='entire-view' />
@@ -2221,11 +2247,8 @@
         <viewpoint name='Price vs Year Built'>
           <zoom type='entire-view' />
         </viewpoint>
-        <viewpoint name='Sheet 17'>
-          <zoom type='entire-view' />
-        </viewpoint>
       </viewpoints>
-      <active id='23' />
+      <active id='-1' />
       <simple-id uuid='{DE720F1A-D8B6-4529-9180-39B4480C6969}' />
     </window>
     <window class='worksheet' name='Sheet 17'>
@@ -2314,6 +2337,29 @@
         </edge>
       </cards>
       <simple-id uuid='{9A1000FA-50F8-43E2-8700-82104FFD9ECB}' />
+    </window>
+    <window class='worksheet' maximized='true' name='Sheet 23'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{AE6EA479-E1E3-40C1-A9FB-1BACCCD90FF7}' />
     </window>
   </windows>
   <_.fcp.ExplainData_AuthorControls.true...explain-data enabled-for-viewer='true' extreme-values-enabled-for-all='false'>
