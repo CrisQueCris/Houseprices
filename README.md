@@ -19,7 +19,7 @@ The basis for this study is a dataset of 21597 houses in King County of Washingt
         - highest mountain: Mount Daniel 2 426 m
         
  
-![Heatmap](heatmapprice.jpeg) 
+![Heatmap](Data/heatmapprice.jpeg) 
 
 
 
